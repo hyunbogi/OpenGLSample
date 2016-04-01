@@ -44,10 +44,17 @@ public:
                 0.0f,
                 1.0f
         };
-
         glClearBufferfv(GL_COLOR, 0, color);
 
         glUseProgram(renderingProgram);
+
+        GLfloat attributes[] = {
+                (float) sin(currentTime) * 0.5f,
+                (float) cos(currentTime) * 0.6f,
+                0.0f,
+                0.0f
+        };
+        glVertexAttrib4fv(0, attributes);
 
         glDrawArrays(GL_TRIANGLES, 0, 3);
     }
@@ -64,6 +71,8 @@ DECLARE_MAIN(SampleApplication);
 GLuint compileShader()
 {
     static const char *vertexShaderCode[] = {"#version 410 core         \n"
+            "layout (location = 0) in vec4 offset;                      \n"
+            "                                                           \n"
             "void main(void)                                            \n"
             "{                                                          \n"
             "   const vec4 vertices[3] = vec4[3]                        \n"
@@ -73,7 +82,7 @@ GLuint compileShader()
             "       vec4(0.25, 0.25, 0.5, 1.0)                          \n"
             "   );                                                      \n"
             "                                                           \n"
-            "   gl_Position = vertices[gl_VertexID];                    \n"
+            "   gl_Position = vertices[gl_VertexID] + offset;           \n"
             "}                                                          \n"
     };
 
