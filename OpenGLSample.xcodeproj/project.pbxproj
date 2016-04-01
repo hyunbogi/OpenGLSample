@@ -8,23 +8,53 @@
 
 /* Begin PBXBuildFile section */
 		1F5763351CAA4AA5004B4FDD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F5763341CAA4AA5004B4FDD /* main.cpp */; };
+		1F57633C1CAA4B0A004B4FDD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F57633B1CAA4B0A004B4FDD /* Cocoa.framework */; };
+		1F57633E1CAA4B19004B4FDD /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F57633D1CAA4B19004B4FDD /* OpenGL.framework */; };
+		1F5763401CAA4B1F004B4FDD /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F57633F1CAA4B1F004B4FDD /* IOKit.framework */; };
+		1F5763621CAA4E44004B4FDD /* gl3w.c in Sources */ = {isa = PBXBuildFile; fileRef = 1F57635D1CAA4E44004B4FDD /* gl3w.c */; };
+		1F5763631CAA4E44004B4FDD /* sb6.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F57635E1CAA4E44004B4FDD /* sb6.cpp */; };
+		1F5763641CAA4E44004B4FDD /* sb6ktx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F57635F1CAA4E44004B4FDD /* sb6ktx.cpp */; };
+		1F5763651CAA4E44004B4FDD /* sb6object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F5763601CAA4E44004B4FDD /* sb6object.cpp */; };
+		1F5763661CAA4E44004B4FDD /* sb6shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F5763611CAA4E44004B4FDD /* sb6shader.cpp */; };
+		1F5763721CAA4F2B004B4FDD /* libglfw.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F5763701CAA4F14004B4FDD /* libglfw.a */; };
+		1F5763761CAA51E4004B4FDD /* libglfw.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1F5763751CAA51E4004B4FDD /* libglfw.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		1F57632F1CAA4AA5004B4FDD /* CopyFiles */ = {
+		1F5763741CAA517D004B4FDD /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 6;
 			files = (
+				1F5763761CAA51E4004B4FDD /* libglfw.dylib in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1F5763311CAA4AA5004B4FDD /* OpenGLSample */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OpenGLSample; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F5763341CAA4AA5004B4FDD /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		1F57633B1CAA4B0A004B4FDD /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		1F57633D1CAA4B19004B4FDD /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		1F57633F1CAA4B1F004B4FDD /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		1F57635B1CAA4E26004B4FDD /* glfw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glfw.h; sourceTree = "<group>"; };
+		1F57635D1CAA4E44004B4FDD /* gl3w.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = gl3w.c; path = sb6/gl3w.c; sourceTree = "<group>"; };
+		1F57635E1CAA4E44004B4FDD /* sb6.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sb6.cpp; path = sb6/sb6.cpp; sourceTree = "<group>"; };
+		1F57635F1CAA4E44004B4FDD /* sb6ktx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sb6ktx.cpp; path = sb6/sb6ktx.cpp; sourceTree = "<group>"; };
+		1F5763601CAA4E44004B4FDD /* sb6object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sb6object.cpp; path = sb6/sb6object.cpp; sourceTree = "<group>"; };
+		1F5763611CAA4E44004B4FDD /* sb6shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sb6shader.cpp; path = sb6/sb6shader.cpp; sourceTree = "<group>"; };
+		1F5763671CAA4E93004B4FDD /* arcball.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = arcball.h; path = include/arcball.h; sourceTree = "<group>"; };
+		1F5763681CAA4E93004B4FDD /* object.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = object.h; path = include/object.h; sourceTree = "<group>"; };
+		1F5763691CAA4E93004B4FDD /* sb6.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = sb6.h; path = include/sb6.h; sourceTree = "<group>"; };
+		1F57636A1CAA4E93004B4FDD /* sb6ext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = sb6ext.h; path = include/sb6ext.h; sourceTree = "<group>"; };
+		1F57636B1CAA4E93004B4FDD /* sb6ktx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = sb6ktx.h; path = include/sb6ktx.h; sourceTree = "<group>"; };
+		1F57636C1CAA4E93004B4FDD /* sb6mfile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = sb6mfile.h; path = include/sb6mfile.h; sourceTree = "<group>"; };
+		1F57636D1CAA4E93004B4FDD /* shader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = shader.h; path = include/shader.h; sourceTree = "<group>"; };
+		1F57636E1CAA4E93004B4FDD /* vmath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = vmath.h; path = include/vmath.h; sourceTree = "<group>"; };
+		1F5763701CAA4F14004B4FDD /* libglfw.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw.a; path = lib/libglfw.a; sourceTree = "<group>"; };
+		1F5763751CAA51E4004B4FDD /* libglfw.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.dylib; path = OpenGLSample/lib/libglfw.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +62,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F5763721CAA4F2B004B4FDD /* libglfw.a in Frameworks */,
+				1F5763401CAA4B1F004B4FDD /* IOKit.framework in Frameworks */,
+				1F57633E1CAA4B19004B4FDD /* OpenGL.framework in Frameworks */,
+				1F57633C1CAA4B0A004B4FDD /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +75,10 @@
 		1F5763281CAA4AA5004B4FDD = {
 			isa = PBXGroup;
 			children = (
+				1F5763751CAA51E4004B4FDD /* libglfw.dylib */,
+				1F57633F1CAA4B1F004B4FDD /* IOKit.framework */,
+				1F57633D1CAA4B19004B4FDD /* OpenGL.framework */,
+				1F57633B1CAA4B0A004B4FDD /* Cocoa.framework */,
 				1F5763331CAA4AA5004B4FDD /* OpenGLSample */,
 				1F5763321CAA4AA5004B4FDD /* Products */,
 			);
@@ -57,9 +95,57 @@
 		1F5763331CAA4AA5004B4FDD /* OpenGLSample */ = {
 			isa = PBXGroup;
 			children = (
+				1F57636F1CAA4EC2004B4FDD /* lib */,
+				1F57635C1CAA4E2A004B4FDD /* sb6 */,
+				1F5763591CAA4D9C004B4FDD /* include */,
 				1F5763341CAA4AA5004B4FDD /* main.cpp */,
 			);
 			path = OpenGLSample;
+			sourceTree = "<group>";
+		};
+		1F5763591CAA4D9C004B4FDD /* include */ = {
+			isa = PBXGroup;
+			children = (
+				1F5763671CAA4E93004B4FDD /* arcball.h */,
+				1F5763681CAA4E93004B4FDD /* object.h */,
+				1F5763691CAA4E93004B4FDD /* sb6.h */,
+				1F57636A1CAA4E93004B4FDD /* sb6ext.h */,
+				1F57636B1CAA4E93004B4FDD /* sb6ktx.h */,
+				1F57636C1CAA4E93004B4FDD /* sb6mfile.h */,
+				1F57636D1CAA4E93004B4FDD /* shader.h */,
+				1F57636E1CAA4E93004B4FDD /* vmath.h */,
+				1F57635A1CAA4E26004B4FDD /* GL */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+		1F57635A1CAA4E26004B4FDD /* GL */ = {
+			isa = PBXGroup;
+			children = (
+				1F57635B1CAA4E26004B4FDD /* glfw.h */,
+			);
+			name = GL;
+			path = include/GL;
+			sourceTree = "<group>";
+		};
+		1F57635C1CAA4E2A004B4FDD /* sb6 */ = {
+			isa = PBXGroup;
+			children = (
+				1F57635D1CAA4E44004B4FDD /* gl3w.c */,
+				1F57635E1CAA4E44004B4FDD /* sb6.cpp */,
+				1F57635F1CAA4E44004B4FDD /* sb6ktx.cpp */,
+				1F5763601CAA4E44004B4FDD /* sb6object.cpp */,
+				1F5763611CAA4E44004B4FDD /* sb6shader.cpp */,
+			);
+			name = sb6;
+			sourceTree = "<group>";
+		};
+		1F57636F1CAA4EC2004B4FDD /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				1F5763701CAA4F14004B4FDD /* libglfw.a */,
+			);
+			name = lib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,7 +157,7 @@
 			buildPhases = (
 				1F57632D1CAA4AA5004B4FDD /* Sources */,
 				1F57632E1CAA4AA5004B4FDD /* Frameworks */,
-				1F57632F1CAA4AA5004B4FDD /* CopyFiles */,
+				1F5763741CAA517D004B4FDD /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -118,7 +204,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F5763631CAA4E44004B4FDD /* sb6.cpp in Sources */,
+				1F5763641CAA4E44004B4FDD /* sb6ktx.cpp in Sources */,
+				1F5763661CAA4E44004B4FDD /* sb6shader.cpp in Sources */,
+				1F5763621CAA4E44004B4FDD /* gl3w.c in Sources */,
 				1F5763351CAA4AA5004B4FDD /* main.cpp in Sources */,
+				1F5763651CAA4E44004B4FDD /* sb6object.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +298,11 @@
 		1F5763391CAA4AA5004B4FDD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/OpenGLSample/include";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OpenGLSample/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -214,6 +310,11 @@
 		1F57633A1CAA4AA5004B4FDD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/OpenGLSample/include";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OpenGLSample/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -237,6 +338,7 @@
 				1F57633A1CAA4AA5004B4FDD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
