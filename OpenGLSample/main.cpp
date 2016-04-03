@@ -47,6 +47,7 @@ public:
         glClearBufferfv(GL_COLOR, 0, color);
 
         glUseProgram(renderingProgram);
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
         GLfloat offsetAttribute[] = {
                 (float) sin(currentTime) * 0.5f,
@@ -54,12 +55,9 @@ public:
                 0.0f,
                 0.0f
         };
-        GLfloat colorAttribute[] = {0.0f, 0.0f, 1.0f, 1.0f};
-
         glVertexAttrib4fv(0, offsetAttribute);
-        glVertexAttrib4fv(1, colorAttribute);
 
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawArrays(GL_PATCHES, 0, 3);
     }
 
 private:
@@ -75,12 +73,6 @@ GLuint compileShader()
 {
     static const char *vertexShaderCode[] = {"#version 410 core         \n"
             "layout (location = 0) in vec4 offset;                      \n"
-            "layout (location = 1) in vec4 color;                       \n"
-            "                                                           \n"
-            "out VERTEX_SHADER_OUT                                      \n"
-            "{                                                          \n"
-            "   vec4 color;                                             \n"
-            "} vertexShaderOut;                                         \n"
             "                                                           \n"
             "void main(void)                                            \n"
             "{                                                          \n"
@@ -92,23 +84,43 @@ GLuint compileShader()
             "   );                                                      \n"
             "                                                           \n"
             "   gl_Position = vertices[gl_VertexID] + offset;           \n"
-            "                                                           \n"
-            "   vertexShaderOut.color = color;                          \n"
             "}                                                          \n"
     };
 
     static const char *fragmentShaderCode[] = {"#version 410 core       \n"
-            "in VERTEX_SHADER_OUT                                       \n"
-            "{                                                          \n"
-            "   vec4 color;                                             \n"
-            "} fragmentShaderIn;                                        \n"
-            "                                                           \n"
             "out vec4 color;                                            \n"
             "                                                           \n"
             "void main(void)                                            \n"
             "{                                                          \n"
-            "   color = fragmentShaderIn.color;                         \n"
+            "   color = vec4(0.0, 0.0, 1.0, 1.0);                       \n"
             "}                                                          \n"
+    };
+
+    static const char *tessControlShaderCode[] = {"#version 410 core        \n"
+            "layout (vertices = 3) out;                                     \n"
+            "                                                               \n"
+            "void main(void)                                                \n"
+            "{                                                              \n"
+            "   if (gl_InvocationID == 0)                                   \n"
+            "   {                                                           \n"
+            "       gl_TessLevelInner[0] = 5.0;                             \n"
+            "       gl_TessLevelOuter[0] = 5.0;                             \n"
+            "       gl_TessLevelOuter[1] = 5.0;                             \n"
+            "       gl_TessLevelOuter[2] = 5.0;                             \n"
+            "   }                                                           \n"
+            "   gl_out[gl_InvocationID].gl_Position = gl_in[gl_InvocationID].gl_Position;   \n"
+            "}                                                              \n"
+    };
+
+    static const char *tessEvaluationShaderCode[] = {"#version 410 core     \n"
+            "layout (triangles, equal_spacing, cw) in;                      \n"
+            "                                                               \n"
+            "void main(void)                                                \n"
+            "{                                                              \n"
+            "   gl_Position = gl_TessCoord.x * gl_in[0].gl_Position +       \n"
+            "                 gl_TessCoord.y * gl_in[1].gl_Position +       \n"
+            "                 gl_TessCoord.z * gl_in[2].gl_Position;        \n"
+            "}                                                              \n"
     };
 
     GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -119,13 +131,25 @@ GLuint compileShader()
     glShaderSource(fragmentShader, 1, fragmentShaderCode, NULL);
     glCompileShader(fragmentShader);
 
+    GLuint tessControlShader = glCreateShader(GL_TESS_CONTROL_SHADER);
+    glShaderSource(tessControlShader, 1, tessControlShaderCode, NULL);
+    glCompileShader(tessControlShader);
+
+    GLuint tessEvaluationShader = glCreateShader(GL_TESS_EVALUATION_SHADER);
+    glShaderSource(tessEvaluationShader, 1, tessEvaluationShaderCode, NULL);
+    glCompileShader(tessEvaluationShader);
+
     GLuint program = glCreateProgram();
     glAttachShader(program, vertexShader);
     glAttachShader(program, fragmentShader);
+    glAttachShader(program, tessControlShader);
+    glAttachShader(program, tessEvaluationShader);
     glLinkProgram(program);
 
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
+    glDeleteShader(tessControlShader);
+    glDeleteShader(tessEvaluationShader);
 
     return program;
 }
