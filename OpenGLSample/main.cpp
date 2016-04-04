@@ -47,6 +47,7 @@ public:
         glClearBufferfv(GL_COLOR, 0, color);
 
         glUseProgram(renderingProgram);
+        glPointSize(5.0f);
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
         GLfloat offsetAttribute[] = {
@@ -123,6 +124,22 @@ GLuint compileShader()
             "}                                                              \n"
     };
 
+    static const char *geometryShaderCode[] = {"#version 410 core       \n"
+            "layout (triangles) in;                                     \n"
+            "layout (points, max_vertices = 3) out;                     \n"
+            "                                                           \n"
+            "void main(void)                                            \n"
+            "{                                                          \n"
+            "   int i;                                                  \n"
+            "                                                           \n"
+            "   for (i = 0; i < gl_in.length(); i++)                    \n"
+            "   {                                                       \n"
+            "       gl_Position = gl_in[i].gl_Position;                 \n"
+            "       EmitVertex();                                       \n"
+            "   }                                                       \n"
+            "}                                                          \n"
+    };
+
     GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertexShader, 1, vertexShaderCode, NULL);
     glCompileShader(vertexShader);
@@ -139,17 +156,23 @@ GLuint compileShader()
     glShaderSource(tessEvaluationShader, 1, tessEvaluationShaderCode, NULL);
     glCompileShader(tessEvaluationShader);
 
+    GLuint geometryShader = glCreateShader(GL_GEOMETRY_SHADER);
+    glShaderSource(geometryShader, 1, geometryShaderCode, NULL);
+    glCompileShader(geometryShader);
+
     GLuint program = glCreateProgram();
     glAttachShader(program, vertexShader);
     glAttachShader(program, fragmentShader);
     glAttachShader(program, tessControlShader);
     glAttachShader(program, tessEvaluationShader);
+    glAttachShader(program, geometryShader);
     glLinkProgram(program);
 
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
     glDeleteShader(tessControlShader);
     glDeleteShader(tessEvaluationShader);
+    glDeleteShader(geometryShader);
 
     return program;
 }
